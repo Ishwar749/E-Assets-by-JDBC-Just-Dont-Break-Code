@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overdue Asset Page</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        label, select {
+            margin: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        /* Hide the date, name, and category dropdowns by default */
+        #dateLabel, #dateSelect, #nameLabel, #nameSelect, #categoryLabel, #categorySelect {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overdue Asset Page</h1>
+    
+    <!-- Dropdown for selecting options -->
+    <label for="optionSelect">Select Option:</label>
+    <select id="optionSelect">
+        <option value="" disabled selected>Search by</option>
+        <option value="name">Name</option>
+        <option value="category">Category</option>
+        <option value="date">Date</option>
+    </select>
+    
+    <!-- Dropdown for selecting a date (hidden by default) -->
+    <label for="dateSelect" id="dateLabel">Select Date:</label>
+    <select id="dateSelect" style="display: none;">
+        <option value="" disabled selected>Select One Date</option>
+        <!-- Populate with dummy dates using JavaScript -->
+    </select>
+    
+    <!-- Dropdown for selecting a user name (hidden by default) -->
+    <label for="nameSelect" id="nameLabel">Select Name:</label>
+    <select id="nameSelect" style="display: none;">
+        <option value="" disabled selected>Select One Name</option>
+        <!-- Populate with user names using JavaScript -->
+    </select>
+    
+    <!-- Dropdown for selecting an asset category (hidden by default) -->
+    <label for="categorySelect" id="categoryLabel">Select Category:</label>
+    <select id="categorySelect" style="display: none;">
+        <option value="" disabled selected>Select One Category</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Mobile">Mobile</option>
+        <option value="Book">Book</option>
+        <!-- Add more category options here -->
+    </select>
+    
+    <!-- List to display overdue assets or user details or category records -->
+    <ul id="assetList">
+        <!-- Populate with assets, user details, or category records using JavaScript -->
+    </ul>
+
+    <script>
+        // JavaScript code here
+        document.addEventListener("DOMContentLoaded", function () {
+            const optionSelect = document.getElementById("optionSelect");
+            const dateLabel = document.getElementById("dateLabel");
+            const dateSelect = document.getElementById("dateSelect");
+            const nameLabel = document.getElementById("nameLabel");
+            const nameSelect = document.getElementById("nameSelect");
+            const categoryLabel = document.getElementById("categoryLabel");
+            const categorySelect = document.getElementById("categorySelect");
+            const assetList = document.getElementById("assetList");
+
+            // Dummy data for dropdown options and overdue assets
+            const dummyData = {
+                dates: ["2023-09-10", "2023-09-15", "2023-09-20"],
+                names: ["M.S. Dhoni", "Virat Kohali", "Rohit Sharma"],
+                categories: ["Laptop", "Mobile", "Book"],
+                assets: [
+                    { name: "M.S. Dhoni", email: "Dhoni@example.com", telephone: "123-456-7890", assetName: "Laptop", date: "2023-09-10" },
+                    { name: "Virat Kohali", email: "virat@example.com", telephone: "987-654-3210", assetName: "Mobile", date: "2023-09-15" },
+                    { name: "Rohit Sharma", email: "rohitS@example.com", telephone: "555-123-4567", assetName: "Book", date: "2023-09-20" },             
+                    // Add more assets here
+                ],
+            };
+
+            // Populate the date dropdown with dummy dates
+            dummyData.dates.forEach((date) => {
+                const option = document.createElement("option");
+                option.value = date;
+                option.textContent = date;
+                dateSelect.appendChild(option);
+            });
+
+            // Populate the name dropdown with dummy names
+            dummyData.names.forEach((name) => {
+                const option = document.createElement("option");
+                option.value = name;
+                option.textContent = name;
+                nameSelect.appendChild(option);
+            });
+
+            // Function to filter and display assets, user details, or category records
+            function displayData() {
+                // Clear the current asset list
+                assetList.innerHTML = "";
+
+                const selectedOption = optionSelect.value;
+
+                if (selectedOption === "date") {
+                    // Filter assets based on the selected date
+                    const selectedDate = dateSelect.value;
+                    const filteredAssets = dummyData.assets.filter((asset) => asset.date === selectedDate);
+
+                    // Display filtered assets in the list
+                    filteredAssets.forEach((asset) => {
+                        const listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <strong>Name:</strong> ${asset.name}<br>
+                            <strong>Email:</strong> ${asset.email}<br>
+                            <strong>Telephone:</strong> ${asset.telephone}<br>
+                            <strong>Asset Name:</strong> ${asset.assetName}<br>
+                        `;
+                        assetList.appendChild(listItem);
+                    });
+                } else if (selectedOption === "name") {
+                    // Filter assets based on the selected name
+                    const selectedName = nameSelect.value;
+                    const filteredAssets = dummyData.assets.filter((asset) => asset.name === selectedName);
+
+                    // Display filtered assets in the list
+                    filteredAssets.forEach((asset) => {
+                        const listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <strong>Name:</strong> ${asset.name}<br>
+                            <strong>Email:</strong> ${asset.email}<br>
+                            <strong>Telephone:</strong> ${asset.telephone}<br>
+                            <strong>Asset Name:</strong> ${asset.assetName}<br>
+                        `;
+                        assetList.appendChild(listItem);
+                    });
+                } else if (selectedOption === "category") {
+                    // Filter assets based on the selected category
+                    const selectedCategory = categorySelect.value;
+                    const filteredAssets = dummyData.assets.filter((asset) => asset.assetName === selectedCategory);
+
+                    // Display filtered assets in the list
+                    filteredAssets.forEach((asset) => {
+                        const listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <strong>Name:</strong> ${asset.name}<br>
+                            <strong>Email:</strong> ${asset.email}<br>
+                            <strong>Telephone:</strong> ${asset.telephone}<br>
+                            <strong>Asset Name:</strong> ${asset.assetName}<br>
+                        `;
+                        assetList.appendChild(listItem);
+                    });
+                }
+            }
+
+            // Event listener for dropdown changes
+            optionSelect.addEventListener("change", function () {
+                if (optionSelect.value === "date") {
+                    dateLabel.style.display = "block";
+                    dateSelect.style.display = "inline-block";
+                    nameLabel.style.display = "none";
+                    nameSelect.style.display = "none";
+                    categoryLabel.style.display = "none";
+                    categorySelect.style.display = "none";
+                } else if (optionSelect.value === "name") {
+                    dateLabel.style.display = "none";
+                    dateSelect.style.display = "none";
+                    nameLabel.style.display = "block";
+                    nameSelect.style.display = "inline-block";
+                    categoryLabel.style.display = "none";
+                    categorySelect.style.display = "none";
+                } else if (optionSelect.value === "category") {
+                    dateLabel.style.display = "none";
+                    dateSelect.style.display = "none";
+                    nameLabel.style.display = "none";
+                    nameSelect.style.display = "none";
+                    categoryLabel.style.display = "block";
+                    categorySelect.style.display = "inline-block";
+                } else {
+                    dateLabel.style.display = "none";
+                    dateSelect.style.display = "none";
+                    nameLabel.style.display = "none";
+                    nameSelect.style.display = "none";
+                    categoryLabel.style.display = "none";
+                    categorySelect.style.display = "none";
+                }
+                displayData();
+            });
+
+            dateSelect.addEventListener("change", function () {
+                displayData();
+            });
+
+            nameSelect.addEventListener("change", function () {
+                displayData();
+            });
+
+            categorySelect.addEventListener("change", function () {
+                displayData();
+            });
+
+            // Initial display of assets, user details, or category records
+            displayData();
+        });
+    </script>
+</body>
+</html>

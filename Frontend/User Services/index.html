@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Availability</title>
+    <link rel="icon" href="https://www.svgrepo.com/show/2086/laptop.svg" type="image/x-icon">
+    <style>
+        /* Styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ... (rest of your CSS styles) */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .availability {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table1 {
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .availability-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .return-button {
+            background-color: #5be05d;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .return-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .availability-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .borrow-message {
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+            /* Initially hidden */
+            color: green;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lenovo ThinkPad T14 Gen 3 Laptop</h1>
+        <div id="current-date-time"></div>
+    </header>
+    <div class="container">
+        <table>
+            <tr>
+                <td><img class="product-image" src="https://m.media-amazon.com/images/I/61qFilljKlL._SX679_.jpg"
+                        alt="Laptop Image"></td>
+                <td><img class="product-image" src="https://m.media-amazon.com/images/I/51cBMsSFLPL._SX679_.jpg"
+                        alt="Laptop Image"></td>
+            </tr>
+        </table>
+        <table class="specs">
+            <tr>
+                <th>Specification</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>ThinkPad T14 Laptop</td>
+            </tr>
+            <tr>
+                <td>RAM</td>
+                <td>48GB</td>
+            </tr>
+            <tr>
+                <td>Processor</td>
+                <td>Intel Core i7</td>
+            </tr>
+            <tr>
+                <td>Storage</td>
+                <td>1TB SSD</td>
+            </tr>
+            <tr>
+                <td>Display</td>
+                <td>14-inch Full HD</td>
+            </tr>
+            <tr>
+                <td>Lending Period</td>
+                <td>10 days</td>
+            </tr>
+            <tr>
+                <td>Unique ID</td>
+                <td><span id="unique-id">-</span></td>
+            </tr>
+            <tr>
+                <td>Available Units</td>
+                <td><span id="available-units">3</span></td>
+            </tr>
+        </table>
+        <br>
+        <div class="button-container">
+            <table class="table1">
+                <tr>
+                    <td class="table1"><button id="availability-button" class="availability-button">Borrow</button></td>
+                    <td><button disabled id="return-button" class="return-button">Return</button></td>
+                </tr>
+            </table> <br>
+            <p class="borrow-message">You should return after 10 days. Return by: <span id="return-date"></span></p>
+            <p style="font-size: smaller; color: grey; align-items: center;">Late Return Fee/Day: 100</p>
+        </div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            var currentDate = new Date();
+            var dateTimeString = currentDate.toLocaleString();
+            document.getElementById('current-date-time').textContent = dateTimeString;
+        }
+
+        // Update the date and time initially and every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        var availableUnits = 3; // Set the initial available units count
+        var borrowButton = document.getElementById('availability-button');
+        var returnButton = document.getElementById('return-button');
+        var borrowMessage = document.querySelector('.borrow-message');
+        var returnDate = document.getElementById('return-date');
+        var uniqueIdDisplay = document.getElementById('unique-id');
+
+        function generateUniqueId() {
+            // Generate a random unique ID (for demonstration purposes, you can use a more sophisticated method)
+            var uniqueId = 100 + Math.floor(Math.random() * 10); // Generates a random number
+            return uniqueId;
+        }
+
+        // Generate the unique ID when the page loads
+        uniqueIdDisplay.textContent = generateUniqueId();
+
+        function updateAvailability() {
+            if (availableUnits > 0) {
+                availableUnits--;
+                document.getElementById('available-units').textContent = availableUnits;
+
+                // Show the borrow message, calculate the return date, and generate a unique ID
+                borrowMessage.style.display = 'block';
+                var currentDate = new Date();
+                currentDate.setDate(currentDate.getDate() + 10); // Add 10 days
+                returnDate.textContent = currentDate.toLocaleDateString();
+                uniqueIdDisplay.textContent = generateUniqueId();
+
+                // Enable the "Return" button and disable the "Borrow" button
+                returnButton.disabled = false;
+                borrowButton.disabled = true;
+            }
+
+            if (availableUnits === 0) {
+                borrowMessage.textContent = 'All laptops are currently borrowed. Please check back later.';
+                uniqueIdDisplay.textContent = "-";
+            }
+        }
+
+        function returnAsset() {
+            alert("Asset returned Thanks");
+            // Reset the availability
+            availableUnits++;
+            document.getElementById('available-units').textContent = availableUnits;
+
+            // Reset the UI
+            borrowMessage.style.display = 'none';
+            uniqueIdDisplay.textContent = generateUniqueId();
+
+            // Enable the "Borrow" button and disable the "Return" button
+            returnButton.disabled = true;
+            borrowButton.disabled = false;
+        }
+
+        borrowButton.addEventListener('click', updateAvailability);
+        returnButton.addEventListener('click', returnAsset);
+
+    </script>
+</body>
+1
+
+</html>

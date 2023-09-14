@@ -1,0 +1,32 @@
+ [
+		{
+			"Name": "Ram Suryawanshi",
+			"Role": "Admin",
+			"Phone_Number": "9876543212",
+			"Email": "admin@gmail.com",
+			"Username": "Ram",
+			"Password": "Ram@2001"
+			
+		},
+		{
+			
+			"Name": "Dhruv Tiwari",
+			"Role": "Borrower",
+			"Phone_Number": "9570012468",
+			"Email": "dhruva-gmail.com",
+			"Username": "Dhruv123",
+			"Password": "durva@11"
+			
+		},
+    {
+		"Name": "Dhruv Tiwari",
+		"Role": "Borrower",
+		"Phone_Number": "9570012468",
+		"Email": "dhruva@gmail.com",
+		"Username": "Dhruv123",
+		"Password": "durva@11"
+		
+			
+		}
+  ]
+  

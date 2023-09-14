@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Asset</title>
+    <link rel="stylesheet" href="UserStyles.css">
+</head>
+<body>
+    <header>
+        <ul>
+       <li><a href="UserHome.html" >Home </a></li>
+       <li><a href="Borrow.html" >Borrow Asset</a></li>
+       <li><a href="#" >Logout</a></li>
+        </ul>
+        </header> 
+    <h1>Asset Management System</h1>
+    
+    <!-- Asset Search Form -->
+    <form id="search-form">
+        <h2>Search for an Asset</h2>
+        <label for="asset-name">Asset Name:</label>
+        <input type="text" id="asset-name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Asset Search Results -->
+    <div id="results">
+        <h2>Search Results</h2>
+        <p id="asset-info"></p>
+        <button id="issue-button">Issue Asset</button>
+    </div>
+
+    <!-- Asset Issue Form -->
+    <form id="issue-form" style="display: none;">
+        <h2>Issue Asset</h2>
+        <label for="user-name">User Name:</label>
+        <input type="text" id="user-name" required>
+        <button type="submit">Issue</button>
+    </form>
+
+
+<script src="BorrowAsset.js"></script>
+</body>
+</html>

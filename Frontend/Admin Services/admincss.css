@@ -1,0 +1,100 @@
+body{
+    background-color: antiquewhite;
+}
+
+table, td, th {
+  margin-top: 30px;  
+  border: 1px solid black;
+  font-size:20px;
+  text-align: left;
+}
+
+table {
+  margin-left: 120px;
+  border-collapse: collapse;
+  width: 80%;
+  background-color:  rgb(224, 199, 224);
+}
+
+th, td {
+  padding: 15px;
+}
+
+tr:hover {background-color: rgb(163, 90, 182);}
+
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
+img {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 20px;
+    width: 800px;
+    height: 500px;
+    float: right;
+  }
+
+  #iuser{
+    padding: 5px;
+    text-align: center;
+    line-height: 2;
+    font-size: larger;
+    width: 600px;
+  border: 1px solid rgb(91, 25, 97);
+  padding: 50px;
+  margin: 50px 200px 0px 300px;
+  background-color: rgb(224, 199, 224);
+  }
+
+  .button1 {border-radius: 4px;
+    background-color: #165896; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#fileInput{
+    display: inline-block;
+    font-size: 16px;
+}
+
+h2{
+  text-align: center;
+  margin-top: 50px;
+}
+
+.highlighted-row {
+  background-color: yellow; /* Change this to your desired color */
+}
+
+
+  
+

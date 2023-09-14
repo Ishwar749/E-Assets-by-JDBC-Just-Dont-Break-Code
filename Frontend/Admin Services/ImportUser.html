@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Import Users</title>
+        <link rel="stylesheet" href="admincss.css"> 
+    </head>
+
+<body>
+    <header>
+    <ul>
+   <li><a href="AdminHome.html" >Home</a></li>
+   <li><a href="#" >Logout</a></li>
+   <li ></li>
+    </ul>
+    </header> 
+
+<div id="iuser">
+<h3>Upload JSON File with User Data</h3>
+<input type="file" id="fileInput" accept=".json, .xml"><br>
+<button class="button1" onclick="handleFileUpload()">Upload File</button>
+<p id="result"></p>
+</div>
+
+<script src="ImportUsers.js"></script>
+</body>
+</html>
